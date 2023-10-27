@@ -1,0 +1,176 @@
+##Code formatting
+    Indentation
+    Spacing
+    Line Length
+    Imports
+    Line Continuation
+    String Formatting
+    Function and Method Call Formatting
+    Whitespace Removal
+    Comment Formatting
+    Naming Conventions
+    Block Structure
+    File and Class Organization
+    Special Syntax Rules
+
+
+##Line length enforcement
+    Maximum Line Length
+    Line Wrapping
+    Indentation of Wrapped Lines
+    Line Continuation
+    String Line Wrapping
+    Function Call Wrapping
+    Operator Line Wrapping
+    Preservation of Code Logic
+    Configuration Options
+
+
+##Comment handling
+    Comment Formatting
+    Comment Line Length
+    Comment Styles
+    Comment Alignment
+    Comment Wrapping
+    Comment Preservation
+    Comment Removal
+    Special Comment Tags
+    Docstrings
+    Comment Consistency
+    Comment Visibility
+    Comment Documentation Generation
+    Comment Language Support
+    Comment Annotation
+
+
+##Imports organization
+    Sorting Imports
+    Grouping Imports
+    Deduplication
+    Wildcard Imports
+    Unused Imports
+    Relative Imports
+    Aliases and Renaming
+    Import Format
+    Conditional Imports
+    Ignored Imports
+    Comments
+    Separation from Code
+    Import Order Rules
+    Import Statements in Docstrings
+    Configurability
+    Integration with Linters
+
+
+##String formatting
+    Line Length Limitation
+    String Wrapping
+    String Concatenation
+    String Interpolation
+    Escape Characters
+    Multiline Strings
+    Raw Strings
+    String Quoting
+    Docstrings
+    String Alignment
+    Unicode and Encoding
+    String Escaping
+    HTML and XML Escaping
+    Localization and Internationalization
+    String Templates
+    Configurability
+
+
+##Multiline expressions
+    Indentation for Multiline Expressions
+    Line Continuation
+    Expression Alignment
+    Wrapping Multiline Expressions
+    Function Call Formatting
+    List and Dictionary Formatting
+    Expression Operators
+    Expression Continuation Style
+    Expression Preservation
+    Expression Wrapping Rules
+    Nested Multiline Expressions
+    Expression Termination
+    Alignment of Multiline Expressions in Data Structures
+
+
+##Whitespace management
+    Indentation
+    Tab vs. Space Preferences
+    Tab Width
+    Spaces vs. Tabs
+    Space Around Operators
+    Line Continuation and Line Breaks
+    Trailing Whitespace
+    Consistent Line Endings
+    Blank Lines
+    Vertical Alignment
+    Formatting Comments
+    Whitespace in Docstrings
+    Configuration Options
+    Preservation of Whitespace
+
+
+##Configurability
+    Indentation Settings
+    Maximum Line Length
+    Indentation Style
+    Line Break Style
+    Spacing Rules
+    Naming Conventions
+    String Formatting
+    Imports Organization
+    Comment Handling
+    Whitespace Management
+    Code Reformatting Options
+    Ignored Files and Directories
+    Preservation of Special Formatting
+    Custom Rules and Overrides
+    Linting Rules
+    Conditional Formatting
+    Editor Integration
+    Version Control Integration
+
+    Code Formatting:
+        Indentation: Ensuring consistent and readable indentation throughout the codebase.
+        Line Length: Enforcing limits on the length of lines for readability and maintainability.
+        Imports: Organizing and managing imports efficiently.
+        String Formatting: Ensuring consistent and readable string formatting throughout the codebase.
+        Block Structure: Ensuring clear and consistent block structures for improved readability and maintainability.
+
+    Line Length Enforcement:
+        Maximum Line Length: Enforcing a maximum line length to promote readability.
+        Line Wrapping: Managing line wrapping to avoid excessively long lines and maintain code readability.
+        String Line Wrapping: Managing the wrapping of strings to maintain consistent formatting.
+
+    Comment Handling:
+        Comment Formatting: Ensuring a consistent format for comments for improved code readability.
+        Docstrings: Managing and enforcing consistent documentation within the codebase.
+        Comment Preservation: Preserving comments for maintaining context and understanding of code.
+
+    Imports Organization:
+        Sorting Imports: Organizing imports to ensure clarity and readability.
+        Grouping Imports: Grouping imports logically for better code organization and understanding.
+        Import Format: Enforcing a consistent and standardized format for imports.
+
+    Whitespace Management:
+        Indentation: Ensuring consistent indentation for readability and maintainability.
+        Trailing Whitespace: Removing unnecessary trailing whitespace for clean and concise code.
+        Consistent Line Endings: Maintaining uniform line endings for consistency across the codebase.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
