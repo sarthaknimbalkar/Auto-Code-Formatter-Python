@@ -3,24 +3,31 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h1 align="center">File Upload</h1>
-<form method="POST" enctype="multipart/form-data">
-    <input type="file" name="file" class="form-control-file">
-    <br/>
-    <div align="center">
-        <button type="submit" class="btn btn-primary">Upload File</button>
-    </div>
-</form>
+    <h1 align="center">File Upload</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" class="form-control-file">
+        <br/>
+        <div align="center">
+            <button type="submit" class="btn btn-primary">Upload File</button>
+        </div>
+    </form>
 
-<h1 align="center">Uploaded Files</h1>
-<ul class="list-group list-group-flush" id="files">
-    {% for file in user.files %}
-    <li class="list-group-item">
-        <a href="{{ file.url }}" target="_blank">{{ file.name }}</a>
-        <form method="POST" action="/delete/{{ file.id }}" style="display: inline;">
-            <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
-    </li>
-    {% endfor %}
-</ul>
+    <h1 align="center">Uploaded Files</h1>
+    <ul class="list-group list-group-flush" id="files">
+        {% for file in files %}
+            <li class="list-group-item" style="display: flex; align-items: center; justify-content: space-between;">
+                <div style="flex: 1;">
+                    <a href="{{ url_for('views.download_file', file_id=file.id) }}">{{ file.name }}</a>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <form method="POST" action="/delete/{{ file.id }}">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    <form method="GET" action="/download/{{ file.id }}">
+                        <button type="submit" class="btn btn-primary">Download</button>
+                    </form>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

@@ -1,6 +1,7 @@
 import os
+import subprocess
 
-from flask import redirect, Blueprint, render_template, request, flash, send_from_directory, url_for
+from flask import redirect, Blueprint, render_template, request, flash, send_file, url_for
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 
@@ -33,26 +34,52 @@ def home():
             else:
                 file.save(file_path)
 
+                process = subprocess.Popen(["black", file_path], stdout=subprocess.PIPE)
+                output, error = process.communicate()
+
+                if error:
+                    flash(f"An error occurred during formatting: {error}", category='error')
+                else:
+                    flash('File uploaded and formatted successfully', category='success')
+
                 new_file = File(name=filename, user_id=current_user.id)
                 db.session.add(new_file)
                 db.session.commit()
-                flash('File uploaded successfully', category='success')
+                # flash('File uploaded successfully', category='success')
         else:
             flash(f'Unsupported file format. Allowed formats are: {allowed_formats}', category='error')
+
+    # Fetch the updated list of files after deletion
+    if request.method == 'GET':
+        files = File.query.filter_by(user_id=current_user.id).all()
+        return render_template("home.html", user=current_user, files=files)
 
     files = File.query.filter_by(user_id=current_user.id).all()
     return render_template("home.html", user=current_user, files=files)
 
 
-@views.route('/download/<int:file_id>')
+@views.route('/download/<int:file_id>', methods=['GET'])
 @login_required
 def download_file(file_id):
     file = File.query.get(file_id)
+
     if file and file.user_id == current_user.id:
-        return send_from_directory(UPLOAD_FOLDER, file.name, as_attachment=True)
+        try:
+            file_path = os.path.join(os.getcwd(), UPLOAD_FOLDER, file.name)
+            print(f"Attempting to download file from path: {file_path}")
+
+            if os.path.exists(file_path):
+                return send_file(file_path, as_attachment=True)
+            else:
+                print(f"File not found at {file_path}")
+                flash('File not found', category='error')
+        except Exception as e:
+            print(f'An error occurred while downloading the file: {e}')
+            flash(f'An error occurred while downloading the file: {e}', category='error')
     else:
         flash('File not found', category='error')
-        return redirect(url_for('views.home'))
+
+    return redirect(url_for('views.home'))
 
 
 @views.route('/delete/<int:file_id>', methods=['GET', 'POST'])
@@ -66,14 +93,18 @@ def delete_file(file_id):
     if request.method == 'POST':
         file = File.query.get(file_id)
         if file and file.user_id == current_user.id:
-            db.session.delete(file)
-            db.session.commit()
-            os.remove(os.path.join(UPLOAD_FOLDER, file.name))
-            flash('File deleted successfully', category='success')
-        else:
-            flash('File not found', category='error')
+            file_path = os.path.join(UPLOAD_FOLDER, file.name)
+            if os.path.exists(file_path):
+                os.remove(file_path)
+                print(f"File removed at {file_path}")
+                db.session.delete(file)
+                db.session.commit()
+                flash('File deleted successfully', category='success')
+            else:
+                print(f"File not found at {file_path}")
+                flash('File not found', category='error')
 
-        return redirect(url_for('views.delete_file', file_id=file_id))  # Redirect to the same page after deletion
+        return redirect(url_for('views.home'))
 
 
 def allowed_file(filename):
