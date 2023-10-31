@@ -1,45 +1,58 @@
-def enforce_indentation(code_content, spaces=4):
-    """
-    Enforce proper indentation in the code content.
-    Args:
-        code_content (str): The content of the code to be formatted.
-        spaces (int): The number of spaces for each indentation level.
-    Returns:
-        str: The code content with corrected indentation.
-    """
-    lines = code_content.split('\n')
-    indented_code = []
-    current_indent = 0
 
-    for line in lines:
-        stripped_line = line.strip()  # Strip from both sides
-        if stripped_line:  # If the line is not just spaces
-            if current_indent == 0 and stripped_line.startswith(('def ', 'class ')):
-                indented_line = stripped_line
-            else:
-                indented_line = ' ' * current_indent + stripped_line
+import math, sys
+
+class ExampleClass:
+    def __init__(self):
+        self.some_value = 5
+
+    def some_method(self, x, y):
+        return x + y
+
+    def another_method(self, a, b):
+        return a * b
+
+def some_function(arg1, arg2):
+    return arg1 - arg2
+
+# This is a comment
+if True:
+    print("This is a test")
+    if False:
+        print("Nested if block")
+    else:
+        print("Nested else block")
+    for i in range(5):
+        if i % 2 == 0:
+            print(f"Even number: {i}")
         else:
-            indented_line = line
+            print(f"Odd number: {i}")
+    try:
+        result = 10 / 0
+    except ZeroDivisionError:
+        print("Cannot divide by zero")
 
-        if stripped_line.endswith(':'):
-            current_indent += spaces
-        elif stripped_line.startswith('else:'):
-            current_indent -= spaces
+# A long line to test line length enforcement. This line is longer than the specified limit in some of the functions. So, it should be split into multiple lines based on the maximum line length specified.
+a_very_long_variable_name_to_test_line_length_enforcement = 10
 
-        indented_code.append(indented_line)
+# String formatting test
+name = "Alice"
+age = 30
+formatted_string = "My name is %s and I am %d years old." % (name, age)
 
-    return '\n'.join(indented_code)
+# Dictionary and list test
+example_dict = {'key1': 'value1', 'key2': 'value2', 'key3': 'value3', 'key4': 'value4'}
+example_list = [1, 2, 3, 4, 5]
 
-# Example usage
-code = """
-class MyClass(object):
-def myFunction(self, x, y):
-                        # This is a comment
-if x + y > z:
-return x - y
-else:
-return x + y
-"""
+# Tuple test
+example_tuple = (1, 2, 3, 4, 5)
 
-formatted_code = enforce_indentation(code)
-print(formatted_code)
+# Function call with various arguments
+result1 = some_function(10, 5)
+result2 = some_function(20, 8)
+
+# Raw text with multiple lines
+raw_text = '''
+This is a raw text example.sdvasdvadfac ac a advadsvadfcasdcasdcsdasdvasdvsva sd asd dfadsc asd
+It spans multiple lines csdcsadvsdvsdavavasdvasvdsdfsda fsdafsd sadfa fdh fh fdhadf d f
+to test raw text handling. asd fsdfasdfdf asdf asdfdsgdfae fgdfh ad gdf gerf gerg erg ad
+'''

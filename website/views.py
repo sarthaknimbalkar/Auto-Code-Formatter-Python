@@ -45,7 +45,6 @@ def home():
                 new_file = File(name=filename, user_id=current_user.id)
                 db.session.add(new_file)
                 db.session.commit()
-                # flash('File uploaded successfully', category='success')
         else:
             flash(f'Unsupported file format. Allowed formats are: {allowed_formats}', category='error')
 
@@ -108,4 +107,4 @@ def delete_file(file_id):
 
 
 def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'py'}
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'py', 'txt'}

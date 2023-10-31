@@ -15,6 +15,36 @@
             crossorigin="anonymous"
     />
 
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        nav {
+            background-color: #343a40 !important;
+        }
+
+        .nav-item {
+            margin-right: 15px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            transform: scale(1.1);
+        }
+
+        .alert {
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+
     <title>{% block title %}Home{% endblock %}</title>
 </head>
 <body>
