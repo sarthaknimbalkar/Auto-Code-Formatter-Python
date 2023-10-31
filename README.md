@@ -16,7 +16,7 @@ The Automatic Python File Formatting and Correctness Evaluation Website is a web
 
 1. Clone the repository: `git clone [https://github.com/sarthaknimbalkar/Auto-Code-Formatter-Python.git]`
 2. Install dependencies: `pip install -r requirements.txt`
-3. Run the application: `python app.py`
+3. Run the application: `python main.py`
 
 ## Usage
 
