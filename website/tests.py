@@ -1,58 +1,61 @@
+# Simulated Annealing
+import math
+import random
 
-import math, sys
+# The initial state is the string to be formatted
+initial_state = "This is a string to be formatted. Let's elongate the string and verify that it works properly"
 
-class ExampleClass:
-    def __init__(self):
-        self.some_value = 5
 
-    def some_method(self, x, y):
-        return x + y
+# The cost function is the number of spaces in the string
+def cost_function(state):
+    return state.count(" ")
 
-    def another_method(self, a, b):
-        return a * b
 
-def some_function(arg1, arg2):
-    return arg1 - arg2
+# The neighbor function is to randomly change one space to a tab or vice versa
+def neighbor(state):
+    index = random.randint(0, len(state) - 1)
+    char_to_replace = "\t" if state[index] == " " else " "
+    return state[:index] + char_to_replace + state[index + 1:]
 
-# This is a comment
-if True:
-    print("This is a test")
-    if False:
-        print("Nested if block")
-    else:
-        print("Nested else block")
-    for i in range(5):
-        if i % 2 == 0:
-            print(f"Even number: {i}")
-        else:
-            print(f"Odd number: {i}")
-    try:
-        result = 10 / 0
-    except ZeroDivisionError:
-        print("Cannot divide by zero")
 
-# A long line to test line length enforcement. This line is longer than the specified limit in some of the functions. So, it should be split into multiple lines based on the maximum line length specified.
-a_very_long_variable_name_to_test_line_length_enforcement = 10
+# The simulated annealing function
+def simulated_annealing(initial_state, cost_function, neighbor, temperature, cooling_rate):
+    current_state = initial_state
+    current_cost = cost_function(current_state)
+    while temperature > 1:
+        print(f"Current state: {current_state}, Current cost: {current_cost}, Temperature: {temperature}")
+        new_state = neighbor(current_state)
+        new_cost = cost_function(new_state)
+        if new_cost < current_cost or random.uniform(0, 1) < math.exp((current_cost - new_cost) / temperature):
+            current_state, current_cost = new_state, new_cost
+        temperature *= 1 - cooling_rate
+    return current_state
 
-# String formatting test
-name = "Alice"
-age = 30
-formatted_string = "My name is %s and I am %d years old." % (name, age)
 
-# Dictionary and list test
-example_dict = {'key1': 'value1', 'key2': 'value2', 'key3': 'value3', 'key4': 'value4'}
-example_list = [1, 2, 3, 4, 5]
+# Run the simulated annealing algorithm
+formatted_string = simulated_annealing(initial_state, cost_function, neighbor, 1000, 0.001)
+print(f"Final state: {formatted_string}")
 
-# Tuple test
-example_tuple = (1, 2, 3, 4, 5)
 
-# Function call with various arguments
-result1 = some_function(10, 5)
-result2 = some_function(20, 8)
+# DFS simulation
+class Node:
+    def __init__(self, value, children=None):
+        self.value = value
+        self.children = children if children is not None else []
 
-# Raw text with multiple lines
-raw_text = '''
-This is a raw text example.sdvasdvadfac ac a advadsvadfcasdcasdcsdasdvasdvsva sd asd dfadsc asd
-It spans multiple lines csdcsadvsdvsdavavasdvasvdsdfsda fsdafsd sadfa fdh fh fdhadf d f
-to test raw text handling. asd fsdfasdfdf asdf asdfdsgdfae fgdfh ad gdf gerf gerg erg ad
-'''
+    def format(self, indent=0):
+        print(' ' * indent + self.value)
+        for child in self.children:
+            child.format(indent + 2)
+
+
+# Example usage:
+root = Node('root', [
+    Node('child1', [
+        Node('grandchild1'),
+        Node('grandchild2')
+    ]),
+    Node('child2')
+])
+
+root.format()

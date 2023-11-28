@@ -192,8 +192,6 @@ def remove_extra_whitespace(code_content):
     return '\n'.join(formatted_code)
 
 
-# Does not work
-# Updated Comment Formatting
 def format_comments(code_content):
     """
     Format comments in the code content as per PEP8 standards.
@@ -258,7 +256,6 @@ def format_block_structure(code_content, spaces=4):
     return '\n'.join(formatted_code)
 
 
-# Does not work
 # Updated File and Class Organization
 def format_file_and_class_organization(code_content):
     """
